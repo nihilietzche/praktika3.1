@@ -68,11 +68,10 @@ class Profile(models.Model):
         verbose_name_plural = 'Профили'
 
 class Result(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     external_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
     title = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
     points = models.IntegerField()
-    max_points = models.IntegerField()                                          #сделать в боте чтобы он возвращал значение max_points в соответствие с title
+    max_points = models.IntegerField(default=0)                                          #сделать в боте чтобы он возвращал значение max_points в соответствие с title
 
     def __str__(self):
         return str(self.external_id)
